@@ -2,10 +2,10 @@ const mongoose=require('mongoose');
 const Schema=mongoose.Schema;
 
 const UserSchema=new Schema({
-    first_name:String,
-    last_name:String,
-    username:String,
-    password:String,
+    first_name:{type:String, maxLength:20},
+    last_name:{type:String, maxLength:20},
+    username:{type:String, maxLength:20},
+    password:{type:String, maxLength:25},
     is_member:Boolean,
 })
 
