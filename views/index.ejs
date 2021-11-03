@@ -5,18 +5,19 @@
         <a href="/create" class="btn btn-primary">Create new Message</a>
       </div>
       <% } %>
+      <% locals.messages=[{title:'bruhhh',text:'sjfbdbfdbfdkbfkdbf',user:'dsfbfd'}] %> 
         <ul>
           <% if(locals.messages) for(const message of locals.messages){ %>
             <li class="card m-3 bg-light">
               <div class="card-body">
-                <h2 class="card-title">
-                  <%= message.title %>
-                </h2>
+                <div class="card-title d-flex justify-content-between">
+                 <h2> <%= message.title %></h2>
+                </div>
                 <p class="card-text">
                   <%= message.text %>
                 </p>
                 <div class="card-author text-end lead">
-                  <% if(locals.user.isMember){ %>
+                  <% if(locals.user?.isMember){ %>
                     <%= message.user %>
                       <% } else{ %>
                         <%= 'Anonymous' %>
