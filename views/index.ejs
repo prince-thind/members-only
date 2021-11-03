@@ -1,4 +1,4 @@
-<%- include('header') %> 
+<%- include('header') %>
   <main>
     <% if(locals.user) {%>
       <div class="container-fluid bg-secondary p-2 d-flex justify-content-center">
@@ -6,16 +6,28 @@
       </div>
       <% } %>
         <ul>
-          <li class="card m-3 bg-light">
-            <div class="card-body">
-              <h2 class="card-title">Title</h2>
-              <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, vero.</p>
-              <div class="card-author text-end lead">Author</div>
-            </div>
-          </li>
+          <% if(locals.messages) for(const message of locals.messages){ %>
+            <li class="card m-3 bg-light">
+              <div class="card-body">
+                <h2 class="card-title">
+                  <%= message.title %>
+                </h2>
+                <p class="card-text">
+                  <%= message.text %>
+                </p>
+                <div class="card-author text-end lead">
+                  <% if(locals.user.isMember){ %>
+                    <%= message.user %>
+                      <% } else{ %>
+                        <%= 'Anonymous' %>
+                          <% } %>
+                </div>
+              </div>
+            </li>
+            <% } %>
 
         </ul>
 
   </main>
 
-<%- include('footer') %> 
+  <%- include('footer') %>
