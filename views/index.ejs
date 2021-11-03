@@ -1,11 +1,21 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-  </body>
-</html>
+<%- include('header') %> 
+  <main>
+    <% if(locals.user) {%>
+      <div class="container-fluid bg-secondary p-2 d-flex justify-content-center">
+        <a href="/create" class="btn btn-primary">Create new Message</a>
+      </div>
+      <% } %>
+        <ul>
+          <li class="card m-3 bg-light">
+            <div class="card-body">
+              <h2 class="card-title">Title</h2>
+              <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, vero.</p>
+              <div class="card-author text-end lead">Author</div>
+            </div>
+          </li>
+
+        </ul>
+
+  </main>
+
+<%- include('footer') %> 
