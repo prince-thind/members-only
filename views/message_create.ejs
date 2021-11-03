@@ -1,0 +1,19 @@
+<%- include('header') %>
+    <main>
+        <form action="POSR" class="form-group">
+            <div class="container mt-2">
+                <div class="row m-4"> <label for="messageTitle">Title: </label>
+                    <input type="text" class="form-control" id="messageTitle" placeholder="Title" name="messageTitle">
+                </div>
+                <div class="row m-4"> <label for="messageText">Text: </label>
+                    <textarea name="messageText" id="messageText" cols="30" rows="5" class="form-control"></textarea>
+                </div>
+                <div class="text-center m-4"><button class="btn btn-primary ">Submit</button>
+                </div>
+            </div>
+
+        </form>
+
+    </main>
+
+    <%- include('footer') %>
