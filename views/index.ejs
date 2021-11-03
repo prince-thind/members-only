@@ -17,7 +17,7 @@
                   <%= message.text %>
                 </p>
                 <div class="card-author text-end lead">
-                  <% if(locals.user?.isMember){ %>
+                  <% if(locals.user?.is_member){ %>
                     <%= message.user %>
                       <% } else{ %>
                         <%= 'Anonymous' %>
