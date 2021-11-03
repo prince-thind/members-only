@@ -24,10 +24,10 @@
           <div class="navbar-nav">
             <a class="nav-link active" aria-current="page" href="/">Home</a>
             <% if(!locals.user) {%>
-              <a class="nav-link" href="/sign-in">Sign In</a>
-              <a class="nav-link" href="/log-in">Log In</a>
+              <a class="nav-link" href="/create/user">Sign In</a>
+              <a class="nav-link" href="/login">Log In</a>
               <% } else{%>
-                <a class="nav-link disabled" href="/log-out">Log Out</a>
+                <a class="nav-link disabled" href="/logout">Log Out</a>
                 <% } %>
           </div>
 
