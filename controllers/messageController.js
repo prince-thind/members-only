@@ -2,7 +2,7 @@ const Message = require('../models/message');
 const { body, validationResult } = require('express-validator');
 
 exports.message_list = function (req, res, next) {
-  Message.find({}).exec(function (err, messages) {
+  Message.find().populate('user').exec(function (err, messages) {
     if (err) return next(err);
     res.render('index', { title: 'Members Only', messages });
   });
