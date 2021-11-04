@@ -6,6 +6,9 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 
+const helmet=require('helmet');
+const compression=require('compression')
+
 //auth requires
 const session = require('express-session');
 const passport = require('passport');
@@ -31,6 +34,8 @@ db.on('error', console.error.bind(console, 'MongoDB Connection error:'));
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
+app.use(compression());
+app.use(helmet());
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
