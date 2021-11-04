@@ -1,0 +1,18 @@
+<%- include('header') %> 
+<form method="POST" class="form-group">
+    <div class="container mt-2">
+        <div class="row m-4"> <label for="password">Enter Secret Password </label>
+            <input type="password" class="form-control" id="password" placeholder="password" name="password">
+        </div>
+     
+        <div class="text-center m-4"><button class="btn btn-primary ">Submit</button>
+        </div>
+    </div>
+
+</form>
+<ul class="container">
+    <% if(locals.errors) for(const error of errors){ %> 
+            <li class="text-danger"><%=error %> </li>
+        <% } %> 
+</ul>
+<%- include('footer') %> 

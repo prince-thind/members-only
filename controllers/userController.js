@@ -29,6 +29,7 @@ exports.user_create_post = [
         last_name: req.body.lastName,
         username: req.body.username,
         password: hashedPassword,
+        is_member: false,
       });
       user.save((err) => {
         if (err) return next(err);
@@ -48,7 +49,9 @@ exports.user_login_post = function (req, res, next) {
       return next(err);
     }
     if (!user) {
-      return res.render('log_in',{errors:['Incorrect Username or Password']});
+      return res.render('log_in', {
+        errors: ['Incorrect Username or Password'],
+      });
     }
     req.logIn(user, function (err) {
       if (err) {
@@ -62,6 +65,35 @@ exports.user_login_post = function (req, res, next) {
 exports.user_logout_get = function (req, res, next) {
   req.logout();
   res.redirect('/');
+};
+
+exports.user_join_get = function (req, res, next) {
+  if (!req.user) {
+    res.redirect('/login');
+    return;
+  }
+  res.render('join', { title: 'Join Membership' });
+};
+
+exports.user_join_post = function (req, res, next) {
+  if (!req.user) {
+    res.redirect('/login');
+    return;
+  }
+  const password = req.body.password;
+  if (password == process.env.SECRET_JOIN) {
+    User.findById(req.user.id, (err, user) => {
+      if (err) return next(err);
+      user.is_member = true;
+      user.save((err) => {
+        if (err) return next(err);
+        res.redirect('/');
+      });
+    });
+  } else {
+    res.render('join', { errors: ['Incorrect Password'] });
+    return;
+  }
 };
 
 function customSanitize(fieldName) {

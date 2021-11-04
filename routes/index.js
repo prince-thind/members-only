@@ -17,5 +17,8 @@ router.post('/login',user_controller.user_login_post);
 
 router.get('/logout',user_controller.user_logout_get);
 
+router.get('/join',user_controller.user_join_get);
+router.post('/join',user_controller.user_join_post);
+
 
 module.exports = router;
