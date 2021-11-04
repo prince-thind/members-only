@@ -1,5 +1,5 @@
 <%- include('header') %>
-    <form action="POST" class="form-group">
+    <form method="POST" class="form-group">
         <div class="container mt-2">
             <div class="row m-4"> <label for="firstName">First Name: </label>
                 <input type="text" class="form-control" id="firstName" placeholder="firstName" name="firstName">
@@ -19,4 +19,9 @@
         </div>
 
     </form>
+    <ul>
+        <% if(locals.errors) for(const error of errors){ %> 
+                <li class="text-danger"><%=error.msg %> </li>
+            <% } %> 
+    </ul>
     <%- include('footer') %>

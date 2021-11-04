@@ -13,4 +13,9 @@
     </div>
 
 </form>
+<ul>
+    <% if(locals.errors) for(const error of errors){ %> 
+            <li class="text-danger"><%=error.msg %> </li>
+        <% } %> 
+</ul>
 <%- include('footer') %> 
