@@ -20,14 +20,14 @@ exports.message_create_post = [
   body('messageTitle')
     .trim()
     .escape()
-    .isAlpha()
-    .withMessage(' TItle must contain only Alphabetical Characters')
+    .isAlphanumeric('en-US',{ignore:' '})
+    .withMessage(' TItle must contain only Alphanumeric Characters')
     .isLength({ min: 2, max: 20 })
     .withMessage('Length of message title must be between 2 to 20'),
   body('messageText')
     .trim()
     .escape()
-    .isAlpha()
+    .isAlphanumeric('en-US',{ignore:' '})
     .withMessage('Message  text must contain only Alphabetical Characters')
     .isLength({ min: 2, max: 20 })
     .withMessage('Length of message must be between 2 to 200'),

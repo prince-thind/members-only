@@ -57,7 +57,7 @@ function customSanitize(fieldName) {
   return body(fieldName)
     .trim()
     .escape()
-    .isAlpha()
+    .isAlphanumeric()
     .withMessage(fieldName + ' must contain only Alphabetical Characters')
     .isLength({ min: 2, max: 20 })
     .withMessage('Length of ' + fieldName + ' must be between 2 to 20');
