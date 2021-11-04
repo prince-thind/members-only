@@ -1,6 +1,7 @@
 const { body, validationResult } = require('express-validator');
 const User = require('../models/user');
 const bcrypt = require('bcryptjs');
+const passport = require('passport');
 
 exports.user_create_get = function (req, res, next) {
   res.render('sign_in', { title: 'Sign In' });
@@ -29,19 +30,27 @@ exports.user_create_post = [
         username: req.body.username,
         password: hashedPassword,
       });
-      user.save(err=>{
-        if(err) return next(err);
-        res.redirect('/')
-      })
+      user.save((err) => {
+        if (err) return next(err);
+        res.redirect('/');
+      });
     });
   },
 ];
 
 exports.user_login_get = function (req, res, next) {
-  res.send('Not Implemented: user login get');
+  res.render('log_in', { title: 'log in' });
 };
-exports.user_login_post = function (req, res, next) {
-  res.send('Not Implemented: user login post');
+
+
+exports.user_login_post = passport.authenticate('local', {
+  successRedirect: '/',
+  failureRedirect: '/',
+});
+
+exports.user_logout_get = function (req, res, next) {
+  req.logout();
+  res.redirect('/');
 };
 
 function customSanitize(fieldName) {
