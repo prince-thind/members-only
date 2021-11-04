@@ -28,8 +28,10 @@
               <a class="nav-link" href="/login">Log In</a>
               <% } else{%>
                 <a class="nav-link" href="/logout">Log Out</a>
-                <a class="nav-link" href="/join">Join Membership</a>
-                <% } %>
+                <% if(!locals.user.is_member) {%>
+                  <a class="nav-link" href="/join">Join Membership</a>
+                  <% } %>
+                    <% } %>
           </div>
 
         </div>
