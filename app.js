@@ -38,12 +38,16 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 //auth setup
+app.use(session({ secret: 'cats', resave: false, saveUninitialized: true }));
+
 passport.use(
-  new LocalStrategy(function (username, password, done) {
-    User.findOne({ username }, (err, user) => {
-      if (err) return done(err);
+  new LocalStrategy((username, password, done) => {
+    User.findOne({ username: username }, (err, user) => {
+      if (err) {
+        return done(err);
+      }
       if (!user) {
-        return done(null, false, { message: 'Incorrect Username' });
+        return done(null, false, { message: 'Incorrect username' });
       }
       bcrypt.compare(password, user.password, (err, res) => {
         if (res) {
@@ -54,10 +58,10 @@ passport.use(
           return done(null, false, { message: 'Incorrect password' });
         }
       });
-      return done(null, user);
     });
   })
 );
+
 passport.serializeUser(function (user, done) {
   done(null, user.id);
 });
@@ -68,11 +72,13 @@ passport.deserializeUser(function (id, done) {
   });
 });
 
-app.use(function(req, res, next) {
-  res.locals.user = req.user;
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(express.urlencoded({ extended: false }));
+app.use(function(req,res,next){
+  res.locals.user=req.user;
   next();
-});
-
+})
 
 app.use('/', indexRouter);
 
