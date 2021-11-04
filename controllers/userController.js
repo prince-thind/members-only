@@ -42,11 +42,22 @@ exports.user_login_get = function (req, res, next) {
   res.render('log_in', { title: 'log in' });
 };
 
-
-exports.user_login_post = passport.authenticate('local', {
-  successRedirect: '/',
-  failureRedirect: '/',
-});
+exports.user_login_post = function (req, res, next) {
+  passport.authenticate('local', function (err, user, info) {
+    if (err) {
+      return next(err);
+    }
+    if (!user) {
+      return res.render('log_in',{errors:['Incorrect Username or Password']});
+    }
+    req.logIn(user, function (err) {
+      if (err) {
+        return next(err);
+      }
+      return res.redirect('/');
+    });
+  })(req, res, next);
+};
 
 exports.user_logout_get = function (req, res, next) {
   req.logout();
