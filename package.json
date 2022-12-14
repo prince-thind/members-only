@@ -4,8 +4,8 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "devstart": "nodemon ./bin/www",
-    "serverstart": "DEBUG=members-only:* npm run devstart"
+    "watch": "nodemon ./bin/www",
+    "server": "DEBUG=members-only:* npm run devstart"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
@@ -13,19 +13,21 @@
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "dotenv": "^10.0.0",
-    "ejs": "~2.6.1",
-    "express": "~4.16.1",
+    "ejs": "^3.1.8",
+    "express": "^4.18.2",
     "express-session": "^1.17.2",
     "express-validator": "^6.13.0",
     "helmet": "^4.6.0",
     "http-errors": "~1.6.3",
     "mongoose": "^6.0.12",
     "morgan": "~1.9.1",
-    "passport": "^0.5.0",
+    "passport": "^0.6.0",
     "passport-local": "^1.0.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.14"
   },
-  "engines": { "node": "14.17.5" }
+  "engines": {
+    "node": "14.17.5"
+  }
 }
